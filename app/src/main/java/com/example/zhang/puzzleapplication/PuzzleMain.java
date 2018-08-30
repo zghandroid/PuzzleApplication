@@ -109,6 +109,7 @@ public class PuzzleMain extends Activity implements View.OnClickListener {
 	initViews();
 	// 生成游戏数据
 	generateGame();
+
 	// GridView点击事件
 	gv_puzzle_main_detail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
  
@@ -175,19 +176,22 @@ public class PuzzleMain extends Activity implements View.OnClickListener {
 	    break;
 	// 重置按钮点击事件
 	case R.id.btn_puzzle_main_restart:
-	    cleanConfig();
-	    generateGame();
-	    recreateData();
-	    // 通知GridView更改UI
-	    tv_puzzle_main_counts.setText("" + countIndex);
-	    adapter.notifyDataSetChanged();
-	    gv_puzzle_main_detail.setEnabled(true);
+		restart();
 	    break;
 	default:
 	    break;
 	}
     }
- 
+
+    private void restart(){
+		cleanConfig();
+		generateGame();
+		recreateData();
+		// 通知GridView更改UI
+		tv_puzzle_main_counts.setText("" + countIndex);
+		adapter.notifyDataSetChanged();
+		gv_puzzle_main_detail.setEnabled(true);
+	}
     /**
      * 生成游戏数据
      */
@@ -202,7 +206,7 @@ public class PuzzleMain extends Activity implements View.OnClickListener {
 	}
  
 	// 数据适配器
-	adapter = new GridItemsAdapter( bitmapItemLists,this);
+	adapter = new GridItemsAdapter( bitmapItemLists,this,type);
 	gv_puzzle_main_detail.setAdapter(adapter);
  
 	// 启用计时器

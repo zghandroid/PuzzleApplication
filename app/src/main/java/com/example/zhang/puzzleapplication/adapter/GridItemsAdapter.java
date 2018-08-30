@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -18,10 +19,12 @@ import java.util.List;
 public class GridItemsAdapter extends BaseAdapter {
     private List<Bitmap> data;
     private Context context;
+    private int type;
 
-    public GridItemsAdapter(List<Bitmap> data, Context context) {
+    public GridItemsAdapter(List<Bitmap> data, Context context,int type) {
         this.data = data;
         this.context = context;
+        this.type = type;
     }
 
     @Override
@@ -46,7 +49,8 @@ public class GridItemsAdapter extends BaseAdapter {
         if(convertView==null){
 
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(80, 100));
+
+            imageView.setLayoutParams(new GridView.LayoutParams(parent.getWidth()/type-5, parent.getHeight()/type));
             // 设置显示比例类型
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         }else {

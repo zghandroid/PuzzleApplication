@@ -85,7 +85,7 @@
 
     <GridView
         android:id="@+id/gv_puzzle_main_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/ll_puzzle_main_btns"
         android:layout_below="@id/ll_puzzle_main_spinner"
